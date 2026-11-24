@@ -1,33 +1,36 @@
-AMCHAM GALA BALL — IPHONE CHECK-IN PWA
+AMCHAM THANKSGIVING DINNER 2026 — CHECK-IN PWA
 
-WHAT THIS IS
-- A single-user, phone-local check-in app.
-- No Python server, laptop, account, cloud database, or venue Wi-Fi is needed after installation.
-- Guest data and check-in/payment marks are stored in this iPhone's browser storage.
-- The app is designed for one operator/device. It does NOT synchronize with the Samsung.
+Event: Tuesday, 24 November 2026
+Venue: Hyatt Regency Casablanca
 
-IMPORTANT BEFORE EVENT USE
-1. The app must first be hosted on an HTTPS website to install as an iPhone home-screen web app.
-2. Open the HTTPS address in Safari on the iPhone.
-3. Tap Share -> Add to Home Screen -> Add.
-4. Open the new AmCham Check-in icon once while online so the offline app files are cached.
-5. Import the FINAL attendee Excel workbook (first worksheet; headers Company, Name, Table Number).
-6. Confirm the imported row count and verify table numbers before using it live.
-7. Export a JSON backup before the event and periodically during check-in. Export CSV for opening attendance in Excel.
+WHAT'S INCLUDED
+- 85 preloaded bookings representing 108 tickets.
+- Search by company, booking contact, or attendee name.
+- Booking-level check-in and individual ticket check-in.
+- Individual check-in never checks in the rest of the booking.
+- Payment status is separate from arrival/check-in.
+- Manual table assignment and attendee-name editing.
+- Excel (.xlsx) and CSV import; JSON backup/restore; attendance CSV export.
+- Offline PWA support; local data stored on the device.
 
-EXCEL IMPORT
-- Reads the first worksheet of .xlsx files directly in the browser; no external libraries.
-- Also accepts CSV.
-- One spreadsheet row becomes one check-in entry. Multiple names in one Name cell stay together as one party entry.
-- Blank Company and Table Number cells inherit the previous nonblank value, which supports grouped company rows.
-- Import replaces the current list and resets check-in/payment marks after confirmation.
-- The supplied working workbook is NOT preloaded; it was intentionally left out because the list is still being adjusted.
+IMPORTANT DATA MODEL
+The source workbook contains booking rows and ticket quantities, not 108 fully identified attendee names. Each booking is preloaded with one attendee slot carrying the supplied Full Name (when present); additional ticket slots are explicitly marked "name needed". These are placeholders, not invented attendee identities. Edit the booking to enter names as they become available.
 
-DATA LIMITATIONS / SAFETY
-- This is local to this iPhone. It does not share changes with another phone.
-- Safari website data can be cleared by iOS/user settings. Keep JSON backups in Files/iCloud Drive.
-- Do not use the Reset or Import function during the event unless you intend to clear/replace the list.
-- The current workbook provided during development has an empty Table Number column; table badges appear once the final workbook contains assignments.
+PAYMENT / ARRIVAL
+Payment status does not automatically check in anyone. Use the attendee buttons to check in one person, or "Check in entire booking" for all tickets in that booking.
 
-HOSTING
-Upload the contents of this folder to a static HTTPS host (for example, a static-site host). Then follow the iPhone installation steps above. HTTPS is required for service-worker/offline installation.
+SEATING
+Table numbers are blank and manually editable. No table count or seating plan is assumed.
+
+INSTALLATION
+1. Host all files on an HTTPS static host (GitHub Pages works).
+2. Open the HTTPS URL in Safari on the iPhone.
+3. Share -> Add to Home Screen.
+4. Open once while online so the service worker caches the app.
+5. Confirm the 85 booking / 108 ticket totals and export a JSON backup.
+
+DATA SAFETY
+- Data is stored in this browser on this device only; no multi-device sync.
+- Use Export backup regularly and keep the JSON in Files/iCloud Drive.
+- Import replaces the current list and resets check-in marks after confirmation.
+- Thanksgiving uses its own localStorage key and cache name; it does not overwrite the old Gala app's local data.
